@@ -1,9 +1,21 @@
 const express = require('express');
 const pool = require('./db');
+const cors = require('cors');
+const Amadeus = require('amadeus');
+
+require('dotenv').config();
+
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
+
+const amadeus = new Amadeus({
+    clientId: process.env.API_KEY,
+    clientSecret: process.env.API_SECRET
+});
 
 app.get('/users', async (req, res) =>{
     try {

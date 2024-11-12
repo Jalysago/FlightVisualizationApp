@@ -1,13 +1,19 @@
 //importing the Pool class from pg library
 const {Pool} = require('pg');
+require('dotenv').config();
 
 //creating a pool instance
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'flight_visualization',
-    password: DB_PASSWORD,
-    port: 3000,
+    user: process.env.POSTGRES_USER,
+    host: process.env.POSTGRES_HOST,
+    database: process.env.POSTGRES_DB,
+    password: process.env.POSTGRES_PASSWORD,
+    port: parseInt(process.env.POSTGRES_PORT, 10),
+    ssl: false
+    
+});
+console.log('connecting with: ', {
+    
 });
 // establishing a connection to the database.
 pool.connect()
