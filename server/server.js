@@ -1,7 +1,9 @@
 const express = require('express');
-const pool = require('./db');
 const cors = require('cors');
-const Amadeus = require('amadeus');
+
+const usersRoutes = require('./routes/users');
+const favoritesRoutes = require('./routes/favorites');
+const flightsRoutes = require('./routes/flights');
 
 require('dotenv').config();
 
@@ -12,23 +14,14 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3001;
 
-const amadeus = new Amadeus({
-    clientId: process.env.API_KEY,
-    clientSecret: process.env.API_SECRET
-});
+app.use('/users', usersRoutes);
+app.use('/favorites', favoritesRoutes);
+app.use('/flights', flightsRoutes);
 
-app.get('/users', async (req, res) =>{
-    try {
-        const result = await pool.query('SELECT * FROM users');
-        res.json(result.rows);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('server error');
-    }
-});
+
 
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port http://localhost:${PORT}`);
 });
 
