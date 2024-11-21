@@ -29,6 +29,8 @@ services:
       POSTGRES_HOST: ${POSTGRES_HOST}
       API_KEY: ${API_KEY}
       API_SECRET: ${API_SECRET}
+    command:
+      sh -c "npx knex migrate:latest && npm start"
 
   frontend:
     build: 
