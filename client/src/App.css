@@ -1,38 +1,23 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Change the selected date color to green */
+.react-datepicker__day--selected {
+    background-color: #22c55e; /* Tailwind's green-500 */
+    color: white; /* Optional: Ensure the text remains readable */
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  /* Change the hover effect for selected dates */
+  .react-datepicker__day--selected:hover {
+    background-color: #16a34a; /* Tailwind's green-600 */
   }
-  to {
-    transform: rotate(360deg);
+  
+  /* Change the highlight color for keyboard navigation */
+  .react-datepicker__day--keyboard-selected {
+    background-color: #22c55e; /* Tailwind's green-500 */
+    color: white;
   }
-}
+  
+  /* Change the range dates (for date range pickers) */
+  .react-datepicker__day--in-range {
+    background-color: #bbf7d0; /* Light green */
+    color: #14532d; /* Dark green for text */
+  }
+  
