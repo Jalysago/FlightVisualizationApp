@@ -26,11 +26,13 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_HOST: postgres-db
       API_KEY: ${API_KEY}
       API_SECRET: ${API_SECRET}
-    command:
-      sh -c "npx knex migrate:latest && npm start"
+    command: >
+      sh -c "until bash -c 'echo > /dev/tcp/postgres-db/5432'; do echo 'Waiting for Postgres...'; sleep 2; done;
+      npx knex migrate:latest && npm run start"
+
 
   frontend:
     build: 
