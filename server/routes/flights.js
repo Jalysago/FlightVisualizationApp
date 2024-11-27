@@ -8,10 +8,10 @@ const amadeus = new Amadeus({
     clientSecret: process.env.API_SECRET
 });
 
-router.get('/flights/search', async(req, res) => {//search for flights
-    const {origin, destination, departureDate, adults} = req.query;
+router.get('flights/search', async(req, res) => {//search for flights
+    const {origin, destination, departureDate, returnDate, adults} = req.query;
 
-    if(!origin || !destination || !departureDate || !adults) {
+    if(!origin || !destination || !departureDate || !returnDate || !adults) {
         return res.status(400).json({ error: 'Missing required parameters' });
     }
 
@@ -37,6 +37,7 @@ router.get('/flights/search', async(req, res) => {//search for flights
             originLocationCode:originCode,
             destinationLocationCode: destinationCode,
             departureDate: departureDate,
+            returnDate: returnDate,
             adults: parseInt(adults,10)
         });
         res.json(response.data);
