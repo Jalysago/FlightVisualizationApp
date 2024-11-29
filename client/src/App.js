@@ -10,7 +10,7 @@ const App = () => {
     <div className="min-h-screen bg-gray-100 p-6">
       <header className="text-center mb-6">
         <h1 className="text-3x1 font-bold text-gray-800">Vuelo!</h1>
-        <p>Your next adventure begins here!</p>
+        <p>Your next adventure starts here!</p>
       </header>
       <FlightSearchForm onSearch={(fetchedFlights)=> setFlights(fetchedFlights)} />
       <div>{flights.map((flight, index) =>(

@@ -8,7 +8,7 @@ const amadeus = new Amadeus({
     clientSecret: process.env.API_SECRET
 });
 
-router.get('flights/search', async(req, res) => {//search for flights
+router.get('/search', async(req, res) => {//search for flights
     const {origin, destination, departureDate, returnDate, adults} = req.query;
 
     if(!origin || !destination || !departureDate || !returnDate || !adults) {
@@ -25,6 +25,10 @@ router.get('flights/search', async(req, res) => {//search for flights
             keyword: destination,
             subType: 'CITY,AIRPORT'
         });
+
+
+    console.log('Origin Response:', originResponse.data);
+    console.log('Destination Response:', destinationResponse.data);
 
         const originCode = originResponse.data[0]?.iataCode;
         const destinationCode = destinationResponse.data[0]?.iataCode;
