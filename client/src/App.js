@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import FlightSearchForm from './components/FlightSearchForm';
-import FlightCard from './components/FlightCard';
 import RegisterPage from './components/RegisterPage';
 import LoginPage from './components/LoginPage';
 import FavoritesPage from './components/FavoritesPage';
@@ -11,6 +9,7 @@ import HomePage from './components/HomePage'
 const App = () => {
   const [flights, setFlights] = useState([]);
 
+  
   
   return (
     <Router>

@@ -71,13 +71,13 @@ const Header = () => {
                     <div>
                         <Link 
                             to="/login" 
-                            className="bg-white text-gray-700 font-bold px-4 py-2 rounded"
+                            className=" text-white font-bold px-4 py-2 rounded"
                         >
                             Login
                         </Link>
                         <Link 
                             to="/register" 
-                            className="bg-white text-gray-700 font-bold px-4 py-2 rounded"
+                            className="text-white font-bold px-4 py-2 rounded"
                         >
                             Register
                         </Link>

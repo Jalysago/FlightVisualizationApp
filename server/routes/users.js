@@ -74,17 +74,19 @@ router.post('/login', async(req, res) => {//user login
     }
 });
 
-router.get('/me', authenticateToken, async(req, res) => {//get user information
-    try{
+rrouter.get('/me', authenticateToken, async (req, res) => {
+    try {
         const { userId } = req;
+        console.log('User ID from token:', userId); // Debugging
+
         const user = await pool.query('SELECT * FROM users WHERE user_id = $1', [userId]);
 
-        if(user.rows.length === 0) {
+        if (user.rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
 
         res.json(user.rows[0]);
-    }catch(err) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
     }
