@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Header from './Header';
+import FlightSearchForm from './FlightSearchForm';
+import FlightCard from './FlightCard';
 
 const HomePage = () => {
+  const [flights, setFlights] = useState([]);
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-4">Welcome to Flight Booking App</h1>
-      <p className="text-lg text-gray-600">
-        Manage your flights and explore destinations easily.
-      </p>
+    <div className="min-h-screen bg-gray-100 p-6">
+          <header className="text-center mb-6">
+            <p>Your next adventure starts here!</p>
+          </header>
+          <FlightSearchForm onSearch={(fetchedFlights)=> setFlights(fetchedFlights)} />
+          <div>{flights.map((flight, index) =>(
+            <FlightCard key={index} flight={flight} />
+          ))}</div>
     </div>
   );
 };
