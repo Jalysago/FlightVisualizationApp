@@ -20,9 +20,8 @@ const LoginPage = () => {
     e.preventDefault();
     try{
         const response = await axios.post('http://localhost:3001/users/login', formData);
-        alert('Logged in!');
-        navigate('http://localhost:3000');
-
+        //alert('Logged in!');
+        navigate('/home');
     } catch (err) {
         console.error(err);
         setError(err.response?.data?.error || 'Invalid Username or Password');
@@ -38,6 +37,7 @@ const LoginPage = () => {
           <input
             type="email"
             id="email"
+            name="email"
             className="border border-gray-300 p-2 w-full rounded"
             value={formData.email}
             onChange={handleInputChange}
@@ -49,6 +49,7 @@ const LoginPage = () => {
           <input
             type="password"
             id="password"
+            name="password"
             className="border border-gray-300 p-2 w-full rounded"
             value={formData.password}
             onChange={handleInputChange}
