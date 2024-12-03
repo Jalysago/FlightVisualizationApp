@@ -10,7 +10,7 @@ const amadeus = new Amadeus({
     clientSecret: process.env.API_SECRET
 });
 
-router.post('/favorites', authenticateToken, async(req, res) => {//save destination as favorite
+router.post('/add', authenticateToken, async(req, res) => {//save destination as favorite
     const { userId } = req;
     const { destination, startDate, endDate } = req.body;
 
@@ -31,7 +31,7 @@ router.post('/favorites', authenticateToken, async(req, res) => {//save destinat
     }
 });
 
-router.get('/favorites', authenticateToken, async(req, res) => {//get all logged in user's favorite destinations
+router.get('/', authenticateToken, async(req, res) => {//get all logged in user's favorite destinations
     const { userId } = req;
 
     try {
@@ -51,7 +51,7 @@ router.get('/favorites', authenticateToken, async(req, res) => {//get all logged
     }
 });
 
-router.delete('/favorites/:destinationId', authenticateToken, async(req, res) => {// remove a favorite destination
+router.delete('/:destinationId', authenticateToken, async(req, res) => {// remove a favorite destination
     const {userId} = req;
     const {destinationId} =req.params;
 

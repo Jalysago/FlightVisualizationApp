@@ -20,6 +20,7 @@ const LoginPage = () => {
     e.preventDefault();
     try{
         const response = await axios.post('http://localhost:3001/users/login', formData);
+        alert('Logged in!');
         navigate('/home');
     } catch (err) {
         console.error(err);

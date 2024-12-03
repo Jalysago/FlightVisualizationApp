@@ -1,42 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import FlightCard from './FlightCard';
 
 
-const FavoritesPage = ({ flight }) => {
-    const departureCity = flight.itineraries[1]?.segments[0]?.departure?.iataCode;
-    const arrivalCity = flight.itineraries[1]?.segments[0]?.arrival?.iataCode;
+const FavoritesPage = () => {
+    const [favorites, setFavorites] = useState([]);
+    const [error, setError] = useState(null);
 
-    const returnDepartureCity = flight.itineraries[1]?.segments[0]?.departure?.iataCode;
-    const returnArrivalCity = flight.itineraries[1]?.segments[0]?.arrival?.iataCode;
+    const fetchFavorites = async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/favorites');
+            setFavorites(response.data);
+        } catch (err) {
+            console.error('Error fetching favorites', err);
+            setError('An error occurred while fetching favorites');
+        }
+    };
+    
+    const deleteFavorite = async (destinationId) => {
+        try {
+            await axios.delete(`http://localhost:3001/favorites/${destinationId}`);
+            fetchFavorites();
+        } catch (err) {
+            console.error('Error deleting favorite', err);
+            setError('Could not delete favorite');
+        }
+    };    
 
-    const departureDate = new Date(flight.itineraries[1]?.segments[0]?.departure.at);
-    const returnDate = new Date(flight.itineraries[0]?.segments[0]?.departure.at)
+    useEffect(() => {
+        fetchFavorites();
+    }, []);
 
-    const formattedDepartureTime = departureDate instanceof Date && !isNaN(departureDate) 
-        ? departureDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
-        : 'N/A';
-    const formattedReturnTime = returnDate instanceof Date && !isNaN(returnDate) 
-    ? returnDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
-    : 'N/A';
-
-    const departureDuration = flight.itineraries[1]?.duration;
-    const returnDuration = flight.itineraries[0]?.duration;
+    if (error) { return <p className="text-center text-red-500">{error}</p>; }
 
     return (
-    <div className="flex items-center justify-between bg-white p-4 rounded-lg shadow-md mb-4">   
-        <div className="flex flex-col w-3/4">
-                <h3 className="text-lg font-bold">{flight.validatingAirlineCodes[0]}</h3>
-                <p className="text-sm font-bold">
-                    departing at {formattedDepartureTime}
-                </p>
-                <p className="text-sm text-gray-600">
-                from {departureCity} to {arrivalCity} 
-                </p>
-                
+        <div className="p-4">
+            <h1 className="text-2xl font-bold mb-4">My Favorites</h1>
+            {favorites.length > 0 ? (
+                favorites.map((fav) => (
+                    <div key={fav.favorite_id}>
+                        <FlightCard
+                            flight={fav.flight_data}
+                            fetchFavorites={fetchFavorites}
+                        />
+                        <button
+                            onClick={() => deleteFavorite(fav.favorite_id)}
+                            className="text-red-500 underline mt-2"
+                        >
+                            Remove from Favorites
+                        </button>
+                    </div>
+                ))
+            ) : (
+                <p>No favorites saved yet!</p>
+            )}
         </div>
-        <div className="flex flex-col items-end w-1/4">
-            <p className="text-xl font-bold text-green-700"> ${flight.price.grandTotal}</p>
-        </div>
-    </div>
     );
 };
 

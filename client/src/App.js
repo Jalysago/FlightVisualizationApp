@@ -5,24 +5,22 @@ import LoginPage from './components/LoginPage';
 import FavoritesPage from './components/FavoritesPage';
 import Header from './components/Header';
 import HomePage from './components/HomePage'
+import {AuthProvider} from './AuthContext';
 
 const App = () => {
-  const [flights, setFlights] = useState([]);
-
-  
-  
+ 
   return (
-    <Router>
-      <Header />
+    <AuthProvider>
+      <Router>
+        <Header />
         <Routes>
           <Route path="/home" element={ <HomePage/>}/>
           <Route path="/register" element={ <RegisterPage /> } />
           <Route path="/login" element={ <LoginPage /> } />
           <Route path="/favorites" element={ <FavoritesPage/> } />
         </Routes>
-        <p>Your next adventure starts here!</p>
     </Router>
-    
+    </AuthProvider>
   );
 }
 

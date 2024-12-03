@@ -56,7 +56,7 @@ router.post('/login', async(req, res) => {//user login
             return res.status(400).json({ error: 'Incorrect email or password' });
         }
 
-        const payload = {userId: userEmail.rows[0].id };
+        const payload = {userId: userEmail.rows[0].user_id };//acabo de cambiar esto dic 2 7:14 pm
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
 
@@ -74,7 +74,7 @@ router.post('/login', async(req, res) => {//user login
     }
 });
 
-rrouter.get('/me', authenticateToken, async (req, res) => {
+router.get('/me', authenticateToken, async (req, res) => {
     try {
         const { userId } = req;
         console.log('User ID from token:', userId); // Debugging

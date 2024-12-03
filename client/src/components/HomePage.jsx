@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Header from './Header';
 import FlightSearchForm from './FlightSearchForm';
 import FlightCard from './FlightCard';
 
