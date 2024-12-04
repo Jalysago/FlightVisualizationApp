@@ -19,7 +19,7 @@ const App = () => {
           <Route path="/login" element={ <LoginPage /> } />
           <Route path="/favorites" element={ <FavoritesPage/> } />
         </Routes>
-    </Router>
+      </Router>
     </AuthProvider>
   );
 }

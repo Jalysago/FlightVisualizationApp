@@ -1,12 +1,21 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../AuthContext';
 
+ 
 const Header = () => {
-    const { user, handleLogout } = useContext(AuthContext);
+    //const { user, handleLogout } = useContext(AuthContext);
+    const [user, setUser] = useState('jaly@gmail.com');
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        console.log("useEffect user", user);
+      }, [user]);
+    
+
+    console.log('Current User:', user);// debug
+    
     return (
         <header className="bg-green-500 text-white px-6 py-4 flex justify-between items-center">
             <h1 className="text-2xl font-bold">
@@ -14,7 +23,6 @@ const Header = () => {
                     Vuelo!
                 </Link>
             </h1>
-
             <nav>
                 {user ? (
                     <div className="relative">
@@ -35,7 +43,7 @@ const Header = () => {
                                     </li>
                                     <li
                                         className="px-4 py-2 hover:bg-green-200 cursor-pointer"
-                                        onClick={handleLogout}
+                                        
                                     >
                                         Logout
                                     </li>
@@ -65,3 +73,4 @@ const Header = () => {
 };
 
 export default Header;
+//onClick={handleLogout} this belongs to line  46
