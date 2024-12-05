@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RegisterPage from './components/RegisterPage';
 import LoginPage from './components/LoginPage';
 import FavoritesPage from './components/FavoritesPage';
 import Header from './components/Header';
 import HomePage from './components/HomePage';
-import AuthContext, { AuthProvider } from './AuthContext';
+import { AuthProvider } from './AuthContext';
 
 const App = () => {
   return (
