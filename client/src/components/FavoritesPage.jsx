@@ -8,8 +8,15 @@ const FavoritesPage = () => {
     const [error, setError] = useState(null);
 
     const fetchFavorites = async () => {
+        const token = localStorage.getItem("token")
         try {
-            const response = await axios.get('http://localhost:3001/favorites');
+            const response = await axios.get('http://localhost:3001/favorites',{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                },
+                withCredentials:true
+            });
+            console.log("Lets see que pedo",response.data)
             setFavorites(response.data);
         } catch (err) {
             console.error('Error fetching favorites', err);

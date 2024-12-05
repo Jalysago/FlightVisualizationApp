@@ -4,8 +4,7 @@ import AuthContext from '../AuthContext';
 
  
 const Header = () => {
-    //const { user, handleLogout } = useContext(AuthContext);
-    const [user, setUser] = useState('jaly@gmail.com');
+    const { user, handleLogout } = useContext(AuthContext);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -13,7 +12,6 @@ const Header = () => {
         console.log("useEffect user", user);
       }, [user]);
     
-
     console.log('Current User:', user);// debug
     
     return (
@@ -43,7 +41,7 @@ const Header = () => {
                                     </li>
                                     <li
                                         className="px-4 py-2 hover:bg-green-200 cursor-pointer"
-                                        
+                                     onClick={handleLogout}   
                                     >
                                         Logout
                                     </li>
