@@ -31,7 +31,7 @@ const Header = () => {
                             {user.username}
                         </button>
                         {dropdownOpen && (
-                            <div className="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg">
+                            <div className="absolute right-0 mt-2 w-56 bg-white text-gray-700 rounded-md shadow-lg">
                                 <ul className="list-none p-0">
                                     <li
                                         className="px-4 py-2 hover:bg-green-200 cursor-pointer"
@@ -71,4 +71,3 @@ const Header = () => {
 };
 
 export default Header;
-//onClick={handleLogout} this belongs to line  46

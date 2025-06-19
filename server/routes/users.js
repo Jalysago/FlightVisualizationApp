@@ -56,10 +56,8 @@ router.post('/login', async(req, res) => {//user login
             return res.status(400).json({ error: 'Incorrect email or password' });
         }
 
-        const payload = {userId: userEmail.rows[0].userId };
+        const payload = {userId: userEmail.rows[0].user_id };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-
 
         res
         .cookie('access_token', token, {
@@ -80,7 +78,7 @@ router.get('/me', authenticateToken, async (req, res) => {
     try {
         console.log('sending request to /me...');
         const { userId } = req;
-        console.log('User ID from token:', userId); // Debugging
+        console.log('User ID from token:', user_id); // Debugging
 
         const user = await pool.query('SELECT * FROM users WHERE user_id = $1', [userId]);
 
