@@ -14,8 +14,10 @@ Vuelo! is a full-stack web application that allows users to search for flights u
 ![image](https://github.com/user-attachments/assets/1f57b34d-8020-4359-88d0-f61b2ec3e757)
 
 ## Register Page
-![image](https://github.com/user-attachments/assets/3a444ea2-4ef7-4d73-9900-66b264d5b37e)
+![image](https://github.com/user-attachments/assets/f4a78d8f-eaa9-458e-89da-d0ecb9094d3e)
+
 
 ## Flight Search Results
-![image](https://github.com/user-attachments/assets/3f1e92be-16b5-404d-b1c8-972d89c42893)
+![image](https://github.com/user-attachments/assets/94ede39f-f54b-4350-9394-80d5b53e6512)
+
 
